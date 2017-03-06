@@ -14,7 +14,7 @@ exports.list = function(req, res) {
 		if (err) return res.apiError('database error', err);
 		
 		res.apiResponse({
-			posts: items
+			textArrayModel: items
 		});
 		
 	});
@@ -30,7 +30,7 @@ exports.get = function(req, res) {
 		if (!item) return res.apiError('not found');
 		
 		res.apiResponse({
-			post: item
+			textArrayModel: item
 		});
 		
 	});
@@ -51,7 +51,7 @@ exports.create = function(req, res) {
 		if (err) return res.apiError('error', err);
 		
 		res.apiResponse({
-			post: item
+			textArrayModel: item
 		});
 		
 	});
@@ -75,7 +75,7 @@ exports.update = function(req, res) {
 			if (err) return res.apiError('create error', err);
 			
 			res.apiResponse({
-				post: item
+				textArrayModel: item
 			});
 			
 		});

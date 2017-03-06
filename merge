@@ -1,0 +1,6 @@
+#!/bin/bash
+echo Preparing to copy files...
+
+cp textarraymodel.js ../myCMS/models/
+cp textarray.js ../myCMS/routes/api/
+cp textarray-test.html ../myCMS/public/

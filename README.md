@@ -23,6 +23,6 @@ app.get('/api/textarray/:id/remove', keystone.middleware.api, routes.api.textarr
 
 3. Copy `textarray.js` API handler file to the `routes/api/` directory.
 
-4. Copy the `textarray-test.html` file to the `public/` directory.
+4. Copy the `textarray-test1.html` and `textarray-test2.html` files to the `public/` directory.
 
-5. Start up KeystoneJS and navigate to `/textarray-test.html`
+5. Start up KeystoneJS and navigate to `/textarray-test1.html` or `/textarray-test2.html`

@@ -3,4 +3,5 @@ echo Preparing to copy files...
 
 cp textarraymodel.js ../myCMS/models/
 cp textarray.js ../myCMS/routes/api/
-cp textarray-test.html ../myCMS/public/
+cp textarray-test1.html ../myCMS/public/
+cp textarray-test2.html ../myCMS/public/

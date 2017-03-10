@@ -5,3 +5,8 @@ cp textarraymodel.js ../myCMS/models/
 cp textarray.js ../myCMS/routes/api/
 cp textarray-test1.html ../myCMS/public/
 cp textarray-test2.html ../myCMS/public/
+
+#Test 3
+cp textarray-test3.html ../myCMS/public/
+cp textarraymodel3.js ../myCMS/models/
+cp textarray3.js ../myCMS/routes/api/

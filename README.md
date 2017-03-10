@@ -17,6 +17,12 @@ app.get('/api/textarray/:id', keystone.middleware.api, routes.api.textarray.get)
 app.all('/api/textarray/:id/update', keystone.middleware.api, routes.api.textarray.update);
 app.all('/api/textarray/create', keystone.middleware.api, routes.api.textarray.create);
 app.get('/api/textarray/:id/remove', keystone.middleware.api, routes.api.textarray.remove);
+
+app.get('/api/textarray3/list', keystone.middleware.api, routes.api.textarray.list);
+app.get('/api/textarray3/:id', keystone.middleware.api, routes.api.textarray.get);
+app.all('/api/textarray3/:id/update', keystone.middleware.api, routes.api.textarray.update);
+app.all('/api/textarray3/create', keystone.middleware.api, routes.api.textarray.create);
+app.get('/api/textarray3/:id/remove', keystone.middleware.api, routes.api.textarray.remove);
 ```
 
 2. Copy the `textarraymodel.js` file to the `models/` directory.

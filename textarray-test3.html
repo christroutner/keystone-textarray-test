@@ -14,7 +14,7 @@
     <div class='container'>
       <div class="row">
         <div class="col-md-12">
-          <button type="button" class="btn btn-default" onclick="runTest(0)">Run Basic Test</button>
+          <button type="button" class="btn btn-default" onclick="runTest(0)">Run Test</button>
         </div>
         
         <div class="col-md-12" id="testOutput"></div>
@@ -47,16 +47,30 @@
         case 0:
           testObj.textArray = [];
       
+          var obj1 = {};
+          obj1.name = 'testy tester';
+          obj1.age = 14;
+          obj1.favoriteColors = ['green', 'red', 'blue'];
           
-          testObj.textArray.push('a');
-          testObj.textArray.push('b');
-          testObj.textArray.push('c');
-          testObj.textArray.push('d');
-          testObj.textArray.push('e');
+          var obj2 = {};
+          obj2.name = 'moxy marlinspike';
+          obj2.age = 43;
+          obj2.favoriteColors = ['aqua', 'cyan', 'purple'];
           
+          var obj3 = {};
+          obj3.name = 'peacful papaya';
+          obj3.age = 25;
+          obj3.favoriteColors = ['black', 'white', 'grey'];
           
+          testObj.textArray.push(obj2JSON(obj1));
+          testObj.textArray.push(obj2JSON(obj2));
+          testObj.textArray.push(obj2JSON(obj3));
           
-          
+          //Fill in the other model fields.
+          testObj.publication = 'test publication';
+          testObj.publication_index = 9;
+          var now = new Date();
+          testObj.reportGenerated = now.toISOString();
           
         //Execute the CREATE test.
         case 10:
@@ -91,12 +105,12 @@
       // BEGIN CREATE TEST
       
       
-      $.post('/api/textarray/create', testObj, function(data) {
+      $.post('/api/textarray3/create', testObj, function(data) {
         debugger;
         
         var thisModel = data.textArrayModel;
         
-        if((thisModel.textArray[0] == 'a') && (thisModel.textArray[4] == 'e')) {
+        if((thisModel.textArray[0] == testObj.textArray[0]) && (thisModel.textArray[2] == testObj.textArray[2])) {
           $('#testOutput').append('<p>CREATE test passed.</p>');
         } else {
           $('#testOutput').append('<p>CREATE test <u>failed</u>.</p>');
@@ -125,7 +139,7 @@
     function readTest() {
       debugger;
       
-      $.get('/api/textarray/'+serverModel._id, '', function(data) {
+      $.get('/api/textarray3/'+serverModel._id, '', function(data) {
         debugger;
         
         var thisModel = data.textArrayModel;
@@ -139,6 +153,18 @@
             return;
           }
         }
+        
+        if((thisModel.publication != 'test publication') || 
+           (thisModel.publication_index != 9) ) {
+          $('#testOutput').append('<p>READ test <u>failed</u>.</p>');
+          $('#testOutput').append('<p>string or number filed is inaccurate.</p>');
+          debugger;
+          return;
+        }
+          
+        thisModel.reportGenerated = new Date(thisModel.reportGenerated);
+        console.log('Original test time stamp: '+testObj.reportGenerated);
+        console.log('Time stamp retrieved from server: '+thisModel.reportGenerated);
         
         $('#testOutput').append('<p>READ test passed.</p>');
         
@@ -158,11 +184,24 @@
     function updateTest() {
       debugger;
       
+      /*
       testObj.textArray[0] = '1';
       testObj.textArray[2] = '2';
       testObj.textArray[4] = '3';
+      */
       
-      $.post('/api/textarray/'+serverModel._id+'/update', testObj, function(data) {
+      var tmpObj = str2JSON(testObj.textArray[0]);
+      tmpObj.age = 66;
+      tmpObj.favoriteColors = ['red', 'white', 'blue'];
+      testObj.textArray[0] = obj2JSON(tmpObj);
+      
+      var tmpObj = str2JSON(testObj.textArray[1]);
+      tmpObj.age = 77;
+      tmpObj.favoriteColors = ['purple', 'blue', 'green'];
+      testObj.textArray[1] = obj2JSON(tmpObj);
+      
+      
+      $.post('/api/textarray3/'+serverModel._id+'/update', testObj, function(data) {
         debugger;
         
         var thisModel = data.textArrayModel;
@@ -195,7 +234,7 @@
     function deleteTest() {
       debugger;
       
-      $.get('/api/textarray/'+serverModel._id+'/remove', '', function(data) {
+      $.get('/api/textarray3/'+serverModel._id+'/remove', '', function(data) {
         debugger;
         
         if(data.success) {

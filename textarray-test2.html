@@ -141,7 +141,7 @@
         //Compare each element between the global model and the server model.
         for(var i = 0; i < testObj.textArray.length; i++) {
           if(testObj.textArray[i] != thisModel.textArray[i]) {
-            $('#testOutput').append('<p>CREATE test <u>failed</u>.</p>');
+            $('#testOutput').append('<p>READ test <u>failed</u>.</p>');
             $('#testOutput').append('<p>testObj != thisModel </p>');
             debugger;
             return;

@@ -41,7 +41,7 @@ exports.get = function(req, res) {
  * Create a Post
  */
 exports.create = function(req, res) {
-	//debugger;
+	debugger;
   
 	var item = new TextArrayModel3.model(),
 		data = (req.method == 'POST') ? req.body : req.query;
@@ -61,9 +61,9 @@ exports.create = function(req, res) {
  * Get Post by ID
  */
 exports.update = function(req, res) {
-
   
 	TextArrayModel3.model.findById(req.params.id).exec(function(err, item) {
+    debugger;
 		
 		if (err) return res.apiError('database error', err);
 		if (!item) return res.apiError('not found');
@@ -90,7 +90,8 @@ exports.remove = function(req, res) {
 	
   
   TextArrayModel3.model.findById(req.params.id).exec(function (err, item) {
-		
+		debugger;
+    
 		if (err) return res.apiError('database error', err);
 		if (!item) return res.apiError('not found');
 		

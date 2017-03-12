@@ -200,6 +200,11 @@
       tmpObj.favoriteColors = ['purple', 'blue', 'green'];
       testObj.textArray[1] = obj2JSON(tmpObj);
       
+      //Change the other values
+      testObj.publication = 'a different publication';
+      testObj.publication_index = 42;
+      var now = new Date();
+      testObj.reportGenerated = now.toISOString();
       
       $.post('/api/textarray3/'+serverModel._id+'/update', testObj, function(data) {
         debugger;
@@ -214,6 +219,16 @@
             debugger;
             return;
           }
+        }
+        
+        if(
+          (testObj.publication != 'a different publication') ||
+          (testObj.publication_index != 42)
+        ) {
+          $('#testOutput').append('<p>UPDATE test <u>failed</u>.</p>');
+          $('#testOutput').append('<p>testObj != thisModel </p>');
+          debugger;
+          return;
         }
         
         $('#testOutput').append('<p>UPDATE test passed.</p>');
@@ -275,7 +290,7 @@
     function str2JSON(str) {
       try {
         var obj = JSON.parse(str);
-        return str;  
+        return obj;  
       } catch(err) {
         console.error(err);
         debugger;
